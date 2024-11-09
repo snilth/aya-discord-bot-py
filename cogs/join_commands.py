@@ -13,7 +13,7 @@ class JoinCommands(commands.Cog):
         print("command: -join")
         print(f"voice channel: {voice_channel}")
 
-        await voice_channel.connect()
+        await voice_channel.connect(self_deaf=True)
         await ctx.send(f"Aya join voice channel: {voice_channel}")
         print(f"bot join {voice_channel}")
         
