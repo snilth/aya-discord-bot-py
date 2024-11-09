@@ -50,6 +50,19 @@ class MusicCommands(commands.Cog):
             
             await ctx.send(f"Now playing: **{title}**")
 
+    @commands.command()
+    async def skip(self, ctx):
+        """ 
+        skip the playing song: -skip
+        if the song stop, play_in_queue() will execute
+        """
+        
+        if ctx.voice_client and ctx.voice_client.is_playing():
+            ctx.voice_client.stop()
+            await ctx.send("Skipped")
+            
+        
+            
         
     @commands.command()
     async def pause(self, ctx):
@@ -57,10 +70,6 @@ class MusicCommands(commands.Cog):
     
     @commands.command()
     async def resume(self, ctx):
-        pass
-    
-    @commands.command()
-    async def skip(self, ctx):
         pass
     
     @commands.command()
