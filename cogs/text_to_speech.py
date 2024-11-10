@@ -25,7 +25,7 @@ class TextToSpeech(commands.Cog):
     
     async def text_to_speech(self, ctx, message):
         try:
-            speech = gTTS(text=message, lang="en", slow=False)
+            speech = gTTS(text=message, lang="th", slow=False)
             speech.save("tts-audio.mp3")
             
             if ctx.voice_client.is_playing():
