@@ -37,25 +37,20 @@ class MusicCommands(commands.Cog):
                 stream_url = info['url']
                 self.queue.append((stream_url, title))
                 await ctx.send(f"Added to queue: **{title}**")
-                await ctx.send("----------------------------")
         
         if not ctx.voice_client.is_playing():
             await self.play_in_queue(ctx)
             
     async def play_in_queue(self, ctx):
         if self.queue:
-            url, title = self.queue.pop(0)
+            url, title = self.queue[0] if self.looping else self.queue.pop(0)
             source = discord.FFmpegPCMAudio(url, **FFMPEG_OPTIONS)
-            
-            if self.looping:
-                self.queue.insert(0, (url, title))
                 
             ctx.voice_client.play(source,
                                   after=lambda e: self.bot.loop.create_task(self.play_in_queue(ctx)))
             
             
             await ctx.send(f"Now playing: **{title}**")
-            await ctx.send("----------------------------")
 
 
     @commands.command()
