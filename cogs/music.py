@@ -84,11 +84,24 @@ class MusicCommands(commands.Cog):
         
     @commands.command()
     async def pause(self, ctx):
-        pass
+        """ 
+        pause the playing song: -pause
+        """
+        
+        if ctx.voice_client and ctx.voice_client.is_playing():
+            ctx.voice_client.pause()
+            await ctx.send("Paused")
     
     @commands.command()
     async def resume(self, ctx):
-        pass
+        """ 
+        resume the paused song: -resume
+        """
+        
+        if ctx.voice_client and ctx.voice_client.is_paused():
+            ctx.voice_client.resume()
+            await ctx.send("Resumed")
+    
     
 
 async def setup(bot):
