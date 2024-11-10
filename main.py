@@ -13,6 +13,7 @@ prefix = "-"
 # create bot instance
 intents = discord.Intents.default()
 intents.message_content = True
+intents.presences = True
 bot = commands.Bot(command_prefix=prefix,
                    intents=intents)
 

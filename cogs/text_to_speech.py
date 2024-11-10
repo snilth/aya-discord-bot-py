@@ -15,7 +15,7 @@ class TextToSpeech(commands.Cog):
         if ctx.voice_client is None:
             await ctx.invoke(self.bot.get_command('join'))
         
-        await text_to_speech(ctx, message)
+        await text_to_speech(ctx.voice_client, message)
     
             
     
